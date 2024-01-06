@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import React from "react";
 function App() {
   const [title, setTitle] = useState("my name is deepak");
 
@@ -9,18 +9,29 @@ function App() {
 
   return (
     <div>
-      <button onClick={updateTitle}> Update the file</button>
-      <Header title={title} />
+      <button onClick={updateTitle}>Update the title</button>
+      
+      <Header title={title}/>
+      <Header title={title}/>
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
+      <Header title="My name is raman" />
       <Header title="My name is raman" />
     </div>
   );
 }
-
-function Header({ title }) {
-  console.log("rendering")
-  return <div>{title}</div>;
-}
-
+const Header = React.memo(function Header ({title}){
+  return <div>
+    {title}
+  </div>
+})
 
 
 export default App;
