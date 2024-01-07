@@ -27,11 +27,11 @@ function App() {
     </div>
   );
 }
-const Header = React.memo(function Header ({title}){
+function Todo({title, description}){
   return <div>
-    {title}
+  
   </div>
-})
+}
 
 
 export default App;
