@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { boolean } = require("zod");
 const { Schema } = mongoose;
 
-mongoose.connect();
+mongoose.connect("mongodb+srv://admin:admin@cluster0.vsqooox.mongodb.net/?retryWrites=true&w=majority");
 
 
 const todoSchema = new Schema({
