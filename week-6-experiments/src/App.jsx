@@ -17,11 +17,11 @@ function App() {
 
   }])
   function addTodo() {
-    setTodos[...todos, {
+    setTodos([...todos, {
       id: 4,
       title: "dskfa",
       description: "sdjfkjsd"
-    }]
+    }])
   }
 
   return (
