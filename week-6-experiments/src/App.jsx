@@ -1,37 +1,29 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState } from 'react';
+
 function App() {
-  const [title, setTitle] = useState("my name is deepak");
+  const [title, setTitle] = useState("My Name is Deepu");
 
   function updateTitle() {
-    setTitle("my name is" + Math.random());
+    setTitle("My Name is " + Math.random())
   }
 
   return (
     <div>
-      <button onClick={updateTitle}>Update the title</button>
-      
-      <Header title={title}/>
-      <Header title={title}/>
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
-      <Header title="My name is raman" />
+      <button onClick={updateTitle}>Click me to change the title</button>
+
+      <Header title={title} />
+      <Header title="deepak" />
     </div>
-  );
-}
-function Todo({title, description}){
-  return <div>
-  
-  </div>
+  )
 }
 
 
-export default App;
+function Header({ title }) {
+  return (
+    <div>
+      {title}
+    </div>
+  )
+}
+
+export default App
