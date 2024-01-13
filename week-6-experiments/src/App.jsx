@@ -1,8 +1,10 @@
 import React, { useState, useMemo } from 'react';
 
+let counter = 4;
+
 function App() {
   const [todos, setTodos] = useState([{
-    id: 1,
+    id: 3,
     title: "Deepak",
     description: "Developer"
   }, {
@@ -10,7 +12,7 @@ function App() {
     title: "Deep",
     description: "Developer"
   }, {
-    id: 3,
+    id: 1,
     title: "epak",
     description: "Developer"
 
@@ -18,7 +20,7 @@ function App() {
   }])
   function addTodo() {
     setTodos([...todos, {
-      id: 4,
+      id: counter++,
       title: "dskfa",
       description: "sdjfkjsd"
     }])
@@ -27,7 +29,7 @@ function App() {
   return (
     <div>
       <button onClick={addTodo}>Add a todo</button>
-      {todos.map(todo => <Todo title={todo.title} description={todo.description} />)}
+      {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
     </div>
   );
 }
