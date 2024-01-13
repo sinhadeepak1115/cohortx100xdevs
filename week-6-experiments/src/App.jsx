@@ -1,29 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 function App() {
-  const [title, setTitle] = useState("My Name is Deepu");
+  const [todos, setTodos] = useState([{
+    id: 1,
+    title: "Deepak",
+    description: "Developer"
+  }, {
+    id: 2,
+    title: "Deep",
+    description: "Developer"
+  }, {
+    id: 3,
+    title: "epak",
+    description: "Developer"
 
-  function updateTitle() {
-    setTitle("My Name is " + Math.random())
+
+  }])
+  function addTodo() {
+    setTodos[...todos, {
+      id: 4,
+      title: "dskfa",
+      description: "sdjfkjsd"
+    }]
   }
 
   return (
     <div>
-      <button onClick={updateTitle}>Click me to change the title</button>
-
-      <Header title={title} />
-      <Header title="deepak" />
+      <button onClick={addTodo}>Add a todo</button>
+      {todos.map(todo => <Todo title={todo.title} description={todo.description} />)}
     </div>
-  )
+  );
 }
 
-
-function Header({ title }) {
+function Todo({ title, description }) {
   return (
-    <div>
-      {title}
-    </div>
+    <>
+      <h1>
+        {title}
+      </h1>
+      <h2>
+        {description}
+      </h2>
+    </>
   )
 }
 
-export default App
+export default App;
+
