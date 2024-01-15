@@ -40,29 +40,30 @@
 
 import { useState } from "react";
 
-
 function App() {
-  const [inputValue, setInputValue] = useState();
-  const [counterValue, setCounterValue] = useState(0);
-  let count = 0;
-  for (let i = 1; i <= parseInt(inputValue); i++) {
-    count = count + i;
-  }
-  return (
-    <>
-      <input onChange={(e) => {
-        setInputValue(e.target.value)
-      }} placeholder={"Find sum from 1 to n"} />
-      <br />
-      {console.log(inputValue)}
-      Sum is {count}
-      <br />
-      <button onClick={() =>
-        setCounterValue(counterValue + 1)}>Counter({counterValue})</button>
-    </>
-  )
-
-
+	const [inputValue, setInputValue] = useState();
+	const [counterValue, setCounterValue] = useState(0);
+	let count = 0;
+	for (let i = 1; i <= parseInt(inputValue); i++) {
+		count = count + i;
+	}
+	return (
+		<>
+			<input
+				onChange={(e) => {
+					setInputValue(e.target.value);
+				}}
+				placeholder={"Find sum from 1 to n"}
+			/>
+			<br />
+			{console.log(inputValue)}
+			Sum is {count}
+			<br />
+			<button onClick={() => setCounterValue(counterValue + 1)}>
+				Counter({counterValue})
+			</button>
+		</>
+	);
 }
 
 export default App;
