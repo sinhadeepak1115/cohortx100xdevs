@@ -1,6 +1,5 @@
-
-export default function Landing() {
+export function Landing() {
   return <div>
-    Landing page
+    Landing Page
   </div>
 }
