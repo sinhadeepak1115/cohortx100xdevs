@@ -4,14 +4,15 @@ function App() {
   const [count, setCount] = useState(0);
   return (
     <div>
-      <Count count={count} />
-      <Button count={count} setCount={setCount} />
+      <Count count={count} setCount={setCount} />
     </div>
   )
 }
-function Count({ count }) {
+function Count({ count, setCount }) {
   return <div>
-    {count}</div>
+    {count}
+    <Button count={count} setCount={setCount} />
+  </div>
 
 }
 function Button({ count, setCount }) {
