@@ -7,12 +7,19 @@ function App() {
       <h1 className="text-3xl font-bold underline">
         Hello world!
       </h1>
-      <div className='flex justify-center'>
-        <div className='bg-red-500' >hi</div>
-        <div className='bg-teal-500'>di</div>
-        <div className='bg-yellow-500'>df</div>
+      <div className='grid grid-cols-10'>
+        <div className='bg-yellow-500 col-span-4'>df</div>
+        <div className='bg-teal-500 col-span-4'>di</div>
+        <div className='bg-yellow-500 col-span-2'>df</div>
 
       </div >
+      <div className='flex'>
+        <div className='bg-yellow-500 w-[40%]'>df</div>
+        <div className='bg-teal-500 w-[20%]'>di</div>
+        <div className='bg-yellow-500 w-[40%]'>df</div>
+
+      </div >
+
     </>
   )
 } export default App
