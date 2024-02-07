@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
 
+function useDebounce(value, timeout) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
-
-function useMousePointer() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const handelMouseMove = (e) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-  };
   useEffect(() => {
-    window.addEventListener('mousemove', handelMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handelMouseMove)
-    }
+    const timer = setTimeout(() => {
+      setDebouncedValue(value);
+    }, timeout);
 
-  }, []);
-  return position;
+    return () => clearTimeout(timer); // Clear timeout on component unmount or value change
+  }, [value, timeout]);
+
+  return debouncedValue; // Return the debounced value
 }
+
 function App() {
-  const mousePointer = useMousePointer();
+  const [value, setValue] = useState('');
+  const debouncedValue = useDebounce(value, 500);
 
   return (
     <>
-      Your mouse Positsion is {mousePointer.x} {mousePointer.y}
+      <p>Debounced value is {debouncedValue}</p>
+      <input type='text' value={value} onChange={e => setValue(e.target.value)} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
