@@ -10,29 +10,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
-function insertData() {
+function insertData(username, email, password) {
     return __awaiter(this, void 0, void 0, function* () {
         const client = new pg_1.Client({
             connectionString: "postgresql://postgres:mysecretpassword@localhost/postgres"
         });
         try {
-            yield client.connect(); // Ensure client connection is established
-            // Create the "users" table if it doesn't exist
-            const createTableQuery = `
-      CREATE TABLE IF NOT EXISTS users (
-        id SERIAL PRIMARY KEY,
-        username VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL
-      );
-    `;
-            yield client.query(createTableQuery);
-            // Insert data into the "users" table
-            const insertQuery = `
-      INSERT INTO users (username, email, password) 
-      VALUES ('username2', 'user3@example.com', 'user_password');
-    `;
-            const res = yield client.query(insertQuery);
+            yield client.connect();
+            const insertQuery = "INSERT INTO users (username, email, password) VALUES ($1,$2,$3)";
+            const values = [username, email, password];
+            const res = yield client.query(insertQuery, values);
             console.log('Insertion success:', res); // Output insertion result
         }
         catch (err) {
@@ -43,4 +30,4 @@ function insertData() {
         }
     });
 }
-insertData();
+insertData('username1', 'user5@sample.com', 'user_password').catch(console.error);
