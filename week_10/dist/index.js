@@ -13,23 +13,33 @@ const pg_1 = require("pg");
 function insertData() {
     return __awaiter(this, void 0, void 0, function* () {
         const client = new pg_1.Client({
-            host: 'localhost',
-            port: 5432,
-            database: 'postgres',
-            user: 'postgres',
-            password: 'mysecretpassword',
+            connectionString: "postgresql://postgres:mysecretpassword@localhost/postgres"
         });
         try {
-            yield client.connect();
-            const insertQuery = "INSERT INTO user (username, email, password) VALUES ('username2', 'user3@example.com', 'user_password');";
+            yield client.connect(); // Ensure client connection is established
+            // Create the "users" table if it doesn't exist
+            const createTableQuery = `
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL
+      );
+    `;
+            yield client.query(createTableQuery);
+            // Insert data into the "users" table
+            const insertQuery = `
+      INSERT INTO users (username, email, password) 
+      VALUES ('username2', 'user3@example.com', 'user_password');
+    `;
             const res = yield client.query(insertQuery);
-            console.log("Insertion success:", res);
+            console.log('Insertion success:', res); // Output insertion result
         }
         catch (err) {
-            console.error("Error during Insertion:", err);
+            console.error('Error during the insertion:', err);
         }
         finally {
-            yield client.end();
+            yield client.end(); // Close the client connection
         }
     });
 }
