@@ -9,23 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const pg_1 = require("pg");
-const client = new pg_1.Client({
-    connectionString: "postgresql://postgres:mysecretpassword@localhost:5432/postgres"
-});
-function createuserstable() {
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
+function insertUser(username, password, firstName, lastName, email) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield client.connect();
-        const result = yield client.query(`
-create table users3 (
-            id serial primary key,
-            username varchar(50) unique not null,
-            email varchar(255) unique not null,
-            password varchar(255) not null,
-            created_at timestamp with time zone default current_timestamp
-        );
-`);
-        console.log(result);
+        prisma.user.create({
+            data: {
+                username,
+                password,
+                firstName,
+                lastName,
+                email
+            }
+        });
     });
 }
-createuserstable();
+insertUser("test", "test", "test", "test", "test");
