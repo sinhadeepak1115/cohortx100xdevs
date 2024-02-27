@@ -11,17 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-function insertUser(username, password, firstName, lastName, email) {
+function getTodos(userId) {
     return __awaiter(this, void 0, void 0, function* () {
-        prisma.user.create({
-            data: {
-                username,
-                password,
-                firstName,
-                lastName,
-                email
+        const response = yield prisma.todos.findMany({
+            where: {
+                userId: userId
             }
         });
+        console.log(response);
     });
 }
-insertUser("test", "test", "test", "test", "test");
+getTodos(1);
