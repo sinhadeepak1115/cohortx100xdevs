@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/", function (req, res) {
+app.get("/", function(req, res) {
   const sonuKidneys = user[0].kidneys;
   const numOfKidneys = sonuKidneys.length;
   const healthyKidney = sonuKidneys.find((element) => element.healthy === true);
@@ -26,7 +26,7 @@ app.get("/", function (req, res) {
   });
 });
 
-app.post("/", function (req, res) {
+app.post("/", function(req, res) {
   console.log(req.body);
   const isHealthy = req.body.isHealthy;
 
@@ -40,7 +40,7 @@ app.post("/", function (req, res) {
   });
 });
 
-app.put("/", function (req, res) {
+app.put("/", function(req, res) {
   // Corrected the variable name from `users` to `user`
   for (let i = 0; i < user[0].kidneys.length; i++) {
     // Corrected the syntax for updating the healthy property
@@ -50,16 +50,16 @@ app.put("/", function (req, res) {
   res.json({});
 });
 
-app.delete("/",function(req,res){
-  const newKidneys= [];
-  for (let i = 0; i< users[0].kidneys.length; i++){
-    if (users[0].kidneys[i].healthy){
+app.delete("/", function(req, res) {
+  const newKidneys = [];
+  for (let i = 0; i < users[0].kidneys.length; i++) {
+    if (users[0].kidneys[i].healthy) {
       newKidneys.push({
-        healthy:true
+        healthy: true
       })
     }
   }
   users[0].kidneys = newKidneys;
-  res.json({msg:"done"})
+  res.json({ msg: "done" })
 })
 app.listen(3000);
