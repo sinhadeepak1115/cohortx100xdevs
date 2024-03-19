@@ -1,14 +1,13 @@
-FROM node:16-apline
+FROM node:20
 
 WORKDIR /app
 
-COPY ..
+COPY . .
 
 RUN npm install
 RUN npm run build
-RUN npx run build
-  
+RUN npx prisma generate
 
-EXPORT 3000
+EXPOSE 3000
 
-CMD ["node","dist/main.js"]
+CMD ["node", "dist/index.js"]
