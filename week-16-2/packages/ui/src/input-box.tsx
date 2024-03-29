@@ -1,8 +1,9 @@
-export const InputBox = ({ children }: { children: React.ReactNode }) => {
+export const InputBox = () => {
   return (
     <div>
+      Hi there
+      <input type={"text"} />
       <h1>InputBox Component</h1>
-      {children}
     </div>
   );
 };
