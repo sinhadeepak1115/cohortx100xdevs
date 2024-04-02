@@ -35,3 +35,14 @@ app.get("/user", (req, res) => {
   const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
   res.send({ userId: decoded.id });
 });
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "ads");
+  res.json({ message: "Logged out!" });
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../src/index.html"));
+});
+
+app.listen(3000);
