@@ -27,6 +27,9 @@ app.post("/signin", (req, res) => {
     JWT_SECRET,
   );
   res.cookie("token", token);
+  res.json({
+    token: token,
+  });
   res.send("Logged in!");
 });
 
@@ -51,4 +54,3 @@ app.get("/", (req, res) => {
 });
 
 app.listen(3000);
-
