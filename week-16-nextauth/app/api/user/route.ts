@@ -1,13 +1,7 @@
-import { Appbar } from "@/components/Appbar";
 import { getServerSession } from "next-auth";
+import { NextResponse } from "next/server";
 
-export default async function () {
+export async function GET() {
   const session = await getServerSession();
-  return (
-    <div>
-      <Appbar />
-      User Component
-      {JSON.stringify(session)}
-    </div>
-  );
+  return NextResponse.json({ session });
 }

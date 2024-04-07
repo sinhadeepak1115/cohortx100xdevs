@@ -32,6 +32,12 @@ const handler = NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    jwt: ({ token, user }) => {
+      console.log(token);
+      return token;
+    },
+  },
 });
 
 export { handler as GET, handler as POST };
