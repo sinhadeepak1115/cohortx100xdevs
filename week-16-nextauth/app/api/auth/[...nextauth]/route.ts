@@ -23,7 +23,11 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials: any) {
-        return { id: "user1" };
+        return {
+          id: "user1",
+          name: "Deepak Kr Sinha",
+          email: credentials.username,
+        };
       },
     }),
   ],

@@ -1,17 +1,20 @@
 "use client";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export const AppBar = () => {
-  const router = useRouter();
+  const session = useSession();
   return (
     <div>
       <button
         onClick={() => {
-          router.push("/api/auth/signin");
+          signIn();
         }}
       >
         Signin
       </button>
+      <button onClick={() => signOut()}>SignOut</button>
+      {JSON.stringify(session)}
     </div>
   );
 };
