@@ -1,11 +1,33 @@
-import { NextRequest, NextResponse } from "next/server";
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
-export function GET(
-  req: NextRequest,
-  { params }: { params: { nextauth: string[] } },
-) {
-  console.log(params.nextauth[0]);
-  return NextResponse.json({
-    message: "Handler",
-  });
-}
+const handler = NextAuth({
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: {
+          label: "email",
+          type: "text",
+          placeholder: "email",
+        },
+        password: {
+          label: "password",
+          type: "password",
+          placeholder: "password",
+        },
+        otp: {
+          label: "OTP",
+          type: "password",
+          placeholder: "password",
+        },
+      },
+      async authorize(credentials: any) {
+        return { id: "user1" };
+      },
+    }),
+  ],
+  secret: process.env.NEXTAUTH_SECRET,
+});
+
+export { handler as GET, handler as POST };
