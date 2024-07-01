@@ -11,6 +11,7 @@ app.post("/submit", async (req, res) => {
   const problemId = req.body.problemId;
   const code = req.body.code;
   const language = req.body.language;
+  console.log(problemId, code, language);
 
   try {
     await client.lPush(
